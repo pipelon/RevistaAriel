@@ -1,11 +1,17 @@
 # Widgetkit #
 
-- Version: 1.5.9
-- Date: July 2016
+- Version: 1.5.11
+- Date: July 2018
 - Author: YOOtheme GmbH
 - Website: <http://www.yootheme.com>
 
 ## Changelog
+
+    1.5.11
+    # Fixed PHP 7.2.x compatibility
+
+    1.5.10
+    # Fixed clear cache deletes Google API key
 
     1.5.9
     # Fixed tinyMCE add image button (J)

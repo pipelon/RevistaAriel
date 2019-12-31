@@ -46,7 +46,7 @@ class LightboxWidgetkitHelper extends WidgetkitHelper {
 
 		// get options
 		foreach (array('title_position' => 'float', 'transition_in' => 'fade', 'transition_out' => 'fade', 'overlay_show' => 1, 'overlay_color' => '#777', 'overlay_opacity' => 0.7) as $option => $value) {
-			$var = preg_replace_callback('/[_-]+(.)?/i', create_function('$matches', 'return strtoupper($matches[1]);'), $option);
+			$var = preg_replace_callback('/[_-]+(.)?/i', function($matches) { return strtoupper($matches[1]); }, $option);
 			$val = $this->options->get('lightbox_'.$option, $value);
 			$options[$var] = is_numeric($val) ? (float) $val : $val;
 		}

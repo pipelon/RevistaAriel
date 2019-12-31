@@ -246,7 +246,7 @@ class ElementGallery extends Element implements iSubmittable{
 			}
 		}
 
-		usort($thumbs, create_function('$a,$b', 'return strcmp($a["filename"], $b["filename"]);'));
+		usort($thumbs, function($a, $b) { return strcmp($a["filename"], $b["filename"]); });
 		switch ($params->get('order', 'asc')) {
 			case 'random':
 				shuffle($thumbs);

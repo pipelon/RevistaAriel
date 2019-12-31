@@ -48,7 +48,6 @@ DataSources.prototype.changeValue = function() {
 	// hide tabs with settings for unused data sources
 	jQuery($this.datasources).each(function(i, obj) {
 		obj = $this.configs[obj];
-		
 		if(obj.source != data_source_name) {
 			jQuery('#'+obj.tab).parents().eq(2).css('display', 'none');	
 			jQuery('a[href="#attrib-'+obj.tabj3+'"]').parent().css('display', 'none');

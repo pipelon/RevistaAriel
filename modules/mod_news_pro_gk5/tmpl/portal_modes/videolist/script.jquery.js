@@ -1,8 +1,8 @@
-jQuery(window).load(function() {
+jQuery(window).on('load',function() {
 	setTimeout(function() {
 		jQuery(document).find('.gkNspPM-VideoList').each(function(i, module) {
 			module = jQuery(module);
-			
+
 			if(!module.hasClass('active')) {
 				module.addClass('active');
 			}
@@ -38,21 +38,7 @@ var GKNSPVideoList = function(module) {
 			//
 			// init UI
 			//
-			// video popups
-			module.find('.gkItem').each(function(i, item) {
-				item = jQuery(item);
-				item.find('.gkImageWrap').click(function(e) {
-					e.preventDefault();
-					var target_img = item.find('img');
-					var url = target_img.attr('data-url');
-					
-					if(url != '#') {
-						SqueezeBox.open(url, {handler: 'iframe', size: {x: target_img.attr('data-x'),y: target_img.attr('data-y') }});
-					} else {
-						window.location.href = item.find('h3 a').attr('href');
-					}
-				});
-			});
+			//
 			// pagination events
 			if(this.pagination.length > 0) {
 				// next button events
@@ -115,12 +101,12 @@ var GKNSPVideoList = function(module) {
 						jQuery(item).addClass('active');
 					}, i * 50);
 				});
-				
+
 				prev.removeClass('to-hide');
 			}, 500);
-		} 
+		}
 	};
-	
+
 	return API;
 };
 

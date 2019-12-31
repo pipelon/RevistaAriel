@@ -382,7 +382,7 @@ class ZooWidget {
 
 		// convert numeric strings to real integers
 		if (isset($data["settings"]) && is_array($data["settings"])) {
-			$data["settings"] = array_map(create_function('$item', 'return is_numeric($item) ? (float) $item : $item;'), $data["settings"]);
+			$data["settings"] = array_map(function($item) { return is_numeric($item) ? (float) $item : $item; }, $data["settings"]);
 		}
 
 		$this->edit($this->widgetkit['widget']->save($data));

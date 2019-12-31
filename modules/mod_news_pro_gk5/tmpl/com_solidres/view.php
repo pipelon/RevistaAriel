@@ -98,9 +98,11 @@ class NSP_GK5_com_solidres_View extends NSP_GK5_View {
 	        ) {
 	        	JLoader::register('SRCurrency', SRPATH_LIBRARY . '/currency/currency.php');
 	        	$currency = new SRCurrency(0, $item['currency_id']);
-	        	
+	        	$total = clone $currency;
 	        	$info_price = NSP_GK5_com_solidres_Model::getPrice($item['id'], date("w"));
-	        	$info_price = '<strong class="gk-solidres-price">' . $currency->getCode() . ' ' . $info_price . '</strong>';
+	        	$total->setValue($info_price);
+	        	$info_price = $total->format();
+	        	$info_price = '<strong class="gk-solidres-price">' . $info_price . '</strong>';
 	        }
 
 	        $news_info = str_replace('%PRICE', $info_price, $news_info);

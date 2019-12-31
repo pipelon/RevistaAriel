@@ -133,6 +133,23 @@
 	text-transform: uppercase;
 }
 
+.gkNspPM-VideoList [id*="gkVideoWrap-"],
+.gkNspPM-VideoList [id^="gkVideoWrap-"] {
+	display: none;
+}
+
+.gkNspPM-VideoList.active .gkItemWrap a.modal {
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	display: block;
+	margin-left: 0;
+	position: static;
+	width: auto;
+	z-index: 1;
+}
+
 /* Bottom navigation */
 .gkNspPM-VideoList .gkBottomNav {
 	border-top: 1px solid #e5e5e5;
@@ -219,7 +236,7 @@
 	width: 100%;
 }
 .gkNspPM-VideoList .gkImageWrap {
-	margin: 0 35px 0 0;	
+	margin: 0 35px 0 0;
 }
 .gkNspPM-VideoList .gkImageWrap {
 	overflow: hidden;

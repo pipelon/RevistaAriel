@@ -24,7 +24,7 @@ class NSP_GK5_VideoList {
 		// detect the supported Data Sources
 		if(stripos($this->parent->config['data_source'], 'com_content_') !== FALSE) {
 			$this->mode = 'com_content';
-		} else if(stripos($this->parent->config['data_source'], 'k2_') !== FALSE) { 
+		} else if(stripos($this->parent->config['data_source'], 'k2_') !== FALSE) {
 			$this->mode = 'com_k2';
 		} else {
 			$this->mode = false;
@@ -36,23 +36,23 @@ class NSP_GK5_VideoList {
 	static function amount_of_articles($parent) {
 		return $parent->config['portal_mode_video_list_pages'] * $parent->config['portal_mode_video_list_per_page'];
 	}
-	// output generator	
-	function output() {	
+	// output generator
+	function output() {
 		// check if any article to display exists
 		if(count($this->parent->content)) {
 			// output the HTML code
 			echo '<div class="gkNspPM gkNspPM-VideoList">';
-			
-			if(trim($this->parent->config['nsp_pre_text'])) {
+
+			if(!empty($this->parent->config['nsp_pre_text']) && trim($this->parent->config['nsp_pre_text'])) {
 				echo $this->parent->config['nsp_pre_text'];
 			}
-			
+
 			$rows = 1;
-			
+
 			if($this->parent->config['portal_mode_video_list_rows'] > 1) {
 				$rows = $this->parent->config['portal_mode_video_list_rows'];
 			}
-			
+
 			echo '<div>';
 			// render blocks
 			for($i = 0; $i < count($this->parent->content); $i++) {
@@ -61,23 +61,38 @@ class NSP_GK5_VideoList {
 				if($i == 0) {
 					echo '<div class="gkItemsPage active" data-cols="'.ceil($this->parent->config['portal_mode_video_list_per_page'] / $rows).'">';
 				}
-				
+
 				$info_date = JHTML::_('date', $this->parent->content[$i]['date'], 'M j, Y');
 				//
-				echo '<figure class="gkItem'.($this->get_video($i) != '#' ? ' video' : '').($i < $this->parent->config['portal_mode_video_list_per_page'] ? ' active' : '').'">';
-					echo '<span class="gkImageWrap"><img src="'.$this->get_image($i).'" alt="'.htmlspecialchars(strip_tags($this->parent->content[$i]['title'])).'" data-url="'.$this->get_video($i).'" data-x="'.$this->parent->config['portal_mode_video_list_popup_x'].'" data-y="'.$this->parent->config['portal_mode_video_list_popup_y'].'" /></span>';
-					
+				echo '<figure class="gkItem'.($this->get_video($i) != '#' ? ' video' : '').($i < $this->parent->config['portal_mode_video_list_per_page'] ? ' active' : '').'"><div class="gkItemWrap">';
+
+					if ($this->get_video($i) != '#') {
+					echo '<div id="gkVideoWrap-'.$i.'" class="gkVideoWrap">
+					    <iframe width="'.$this->parent->config['portal_mode_video_list_popup_x'].'" height="'.$this->parent->config['portal_mode_video_list_popup_y'].'"
+					    src="'.$this->get_video($i).'" allowfullscreen frameborder="0"></iframe>
+							</div>';
+
+					echo '<a class="modal" rel="{size:{x:'.$this->parent->config['portal_mode_video_list_popup_x'].',y:'.$this->parent->config['portal_mode_video_list_popup_y'].'}}" href="#gkVideoWrap-'.$i.'" title="'.htmlspecialchars(strip_tags($this->parent->content[$i]['title'])).'">';
+
+					} else {
+						echo '<a class="gkImageWrap-link" href="'.$this->get_link($i).'" title="'.htmlspecialchars(strip_tags($this->parent->content[$i]['title'])).'">';
+					}
+
+				    echo '<span class="gkImageWrap"><img data-url="'.$this->get_video($i).'" src="'.$this->get_image($i).'" alt="'.htmlspecialchars(strip_tags($this->parent->content[$i]['title'])).'"/></span>';
+
+					echo '</a>';
+
 					echo '<figcaption>';
 						if($this->parent->config['portal_mode_video_list_title'] == 1) {
 							echo '<h3><a href="'.$this->get_link($i).'" title="'.htmlspecialchars(strip_tags($this->parent->content[$i]['title'])).'">'.$title.'</a></h3>';
 						}
-						
+
 						if($this->parent->config['portal_mode_video_list_date'] == 1) {
 							echo '<strong>' . $info_date . '</strong>';
 						}
 					echo '</figcaption>';
-				echo '</figure>';
-				
+				echo '</div></figure>';
+
 				if(($i > 0 && (($i+1) % $this->parent->config['portal_mode_video_list_per_page'] == 0) && $i != count($this->parent->content) - 1) || ($this->parent->config['portal_mode_video_list_per_page'] == 1 && $i != count($this->parent->content) - 1)) {
 					echo '</div>';
 					echo '<div class="gkItemsPage" data-cols="'.$this->parent->config['portal_mode_video_list_per_page'].'">';
@@ -86,26 +101,26 @@ class NSP_GK5_VideoList {
 				}
 			}
 			echo '</div>';
-			
+
 			// pagination
 			if(count($this->parent->content) > $this->parent->config['portal_mode_video_list_per_page']) {
 				echo '<div class="gkBottomNav">';
 				echo '<a href="#" class="gkBottomNavPrev">&laquo;</a>';
-				
+
 				echo '<ul class="gkBottomNavPagination">';
 				for($i = 0; $i < ceil(count($this->parent->content) / $this->parent->config['portal_mode_video_list_per_page']); $i++) {
 					echo '<li'.($i == 0 ? ' class="active"': '').'>'.($i+1).'</li>';
 				}
 				echo '</ul>';
-				
+
 				echo '<a href="#" class="gkBottomNavNext">&raquo;</a>';
 				echo '</div>';
 			}
-			
-			if(trim($this->parent->config['nsp_post_text'])) {
+
+			if(!empty($this->parent->config['nsp_post_text']) && trim($this->parent->config['nsp_post_text'])) {
 				echo $this->parent->config['nsp_post_text'];
 			}
-			
+
 			echo '</div>';
 		} else {
 			echo '<strong>Error:</strong> No articles to display';
@@ -116,26 +131,26 @@ class NSP_GK5_VideoList {
 		if($this->mode == 'com_k2') {
 			// prepare the array with IDs
 			$IDs = array();
-			
+
 			for($i = 0; $i < count($this->parent->content); $i++) {
 				array_push($IDs, $this->parent->content[$i]['id']);
 			}
-			
+
 			$IDs = implode(',', $IDs);
 			// use the array in the query
 			$db = JFactory::getDBO();
 			$query_videos = '
-				SELECT 
+				SELECT
 					c.id AS id,
 					c.video AS video
-				FROM 
+				FROM
 					#__k2_items AS c
-				WHERE 
+				WHERE
 					c.id IN ('.$IDs.')
-		        ';	
+		        ';
 			// Executing SQL Query
 			$db->setQuery($query_videos);
-	
+
 			// check if some categories was detected
 			$results = array();
 			if($videos = $db->loadObjectList()) {
@@ -171,13 +186,13 @@ class NSP_GK5_VideoList {
 			} else {
 				$video_matches = array();
 				preg_match('@<iframe.*?src="(.*?)".*?</iframe>@mis', $this->parent->content[$num]['text'], $video_matches);
-				
+
 				if(count($video_matches)) {
 					return $video_matches[1];
 				}
 			}
 		}
-		
+
 		return '#';
 	}
 	// function used to retrieve the item URL
@@ -199,7 +214,7 @@ class NSP_GK5_VideoList {
 		}
 	}
 	// image generator
-	function get_image($num) {		
+	function get_image($num) {
 		// used variables
 		$url = false;
 		$output = '';
@@ -232,7 +247,7 @@ class NSP_GK5_VideoList {
 		}
 	}
 	// function to generate blank transparent PNG images
-	public function generateBlankImage($width, $height){ 
+	public function generateBlankImage($width, $height){
 		$image = imagecreatetruecolor($width, $height);
 		imagesavealpha($image, true);
 		$transparent = imagecolorallocatealpha($image, 0, 0, 0, 127);

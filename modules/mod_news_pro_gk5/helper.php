@@ -30,13 +30,14 @@ class NSP_GK5_Helper {
 	var $params = null;
 	
 	// module initialization
-	function init($module, $params) {  
+	function init($module, $params) {
 		// getting module ID - automatically (from Joomla! database) or manually
 		$this->module_id = ($params->get('module_unique_id', '') == '') ? 'nsp-'.$module->id : $params->get('module_unique_id', '');
 		$this->config = $params->toArray();
 		$this->config['module_id'] = $this->module_id;
-		if(!isset($this->config['com_content_text_type'])) { $this->config['com_content_text_type'] = 'introtext'; }
-		if(!isset($this->config['com_k2_text_type'])) { $this->config['com_k2_text_type'] = 'introtext'; }
+        if (empty($this->config['layout'])) $this->config['layout'] = 'default';
+		if (!isset($this->config['com_content_text_type'])) { $this->config['com_content_text_type'] = 'introtext'; }
+		if (!isset($this->config['com_k2_text_type'])) { $this->config['com_k2_text_type'] = 'introtext'; }
 		$this->params = $params;
 		// detect the data source
 		$this->source = $this->config["source_name"];
@@ -45,21 +46,7 @@ class NSP_GK5_Helper {
 			// load the MooTools framework to use with the module
 			JHtml::_('behavior.framework', true);
 		} else if($this->config['include_jquery'] == 1) {
-			// if the user specify to include the jQuery framework - load newest jQuery 1.7.* 
-			$doc = JFactory::getDocument();
-			// generate keys of script section
-			$headData = $doc->getHeadData();
-			$headData_keys = array_keys($headData["scripts"]);
-			// set variable for false
-			$engine_founded = false;
-			// searching phrase mootools in scripts paths
-			if(array_search('https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js', $headData_keys) > 0) {
-				$engine_founded = true;
-			}
-			//
-			if(!$engine_founded) {
-				$doc->addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js');
-			}
+			JHtml::_('jquery.framework');
 		}
         // small validation
 		if($this->config['list_title_limit'] == 0 && $this->config['list_text_limit'] == 0) {
@@ -79,6 +66,25 @@ class NSP_GK5_Helper {
 		// override old string-based rules with the more readable array structures
 		$this->config['crop_rules'] = NSP_GK5_Utils::parseCropRules($this->config);
 	}
+
+	function getComponentStatus()
+	{
+		$component = $this->source;
+		$db = JFactory::getDbo();
+		if ($component == 'jomsocial')
+			$component = 'com_community';
+		if (!preg_match('/^com_/', $component))
+			return true;
+		$q = 'select enabled from #__extensions where type="component" and element = "'.$component.'"';
+		$db->setQuery($q);
+		$status = $db->loadResult();
+		if($status) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	// GETTING DATA
 	function getDatas(){
 		//
@@ -111,6 +117,11 @@ class NSP_GK5_Helper {
 		}
 		// PHP 5.3:
 		//$this->content = $model_class::getArticles($categories, $this->config, $amountOfArts);
+// 		echo '<pre>';
+// 		var_dump($amountOfArts);
+// 		var_dump($categories);
+// 		var_dump($this->config);
+// 		echo '</pre>';
 		$this->content = call_user_func(array($model_class, "getArticles"), $categories, $this->config, $amountOfArts);
 	}
 	// RENDERING LAYOUT
@@ -125,25 +136,28 @@ class NSP_GK5_Helper {
 			$uri = JURI::getInstance();
 			$app = JFactory::getApplication();
 			$template_name = $app->getTemplate();
+
 			// Basic paths
-			$css_path = $uri->root().'modules/mod_news_pro_gk5/tmpl/portal_modes/'.strtolower($this->config['module_mode']).'/style.css';
-			$js_path = $uri->root().'modules/mod_news_pro_gk5/tmpl/portal_modes/'.strtolower($this->config['module_mode']).'/script.'.($this->config['engine_mode']).'.js';
 			// Check for the CSS overrides in the template
 			if(JFile::exists(JPATH_SITE . DS . 'templates' . DS . $template_name . DS . 'html' . DS . 'mod_news_pro_gk5' . DS . 'portal_modes' . DS . strtolower($this->config['module_mode']) . DS . 'style.css')) {
 				$css_path = $uri->root().'templates/'.$template_name.'/html/mod_news_pro_gk5/portal_modes/'.strtolower($this->config['module_mode']).'/style.css';	
+			} else {
+				$css_path = $uri->root().'modules/mod_news_pro_gk5/tmpl/portal_modes/'.strtolower($this->config['module_mode']).'/style.css';
 			}
+
 			// JS potential override
 			if(JFile::exists(JPATH_SITE . DS . 'templates' . DS . $template_name . DS . 'html' . DS . 'mod_news_pro_gk5' . DS . 'portal_modes' . DS . strtolower($this->config['module_mode']) . DS . 'script.' . ($this->config['engine_mode']) . '.js')) {
 				$js_path = $uri->root().'templates/'.$template_name.'/html/mod_news_pro_gk5/portal_modes/'.strtolower($this->config['module_mode']).'/script.'.($this->config['engine_mode']).'.js';	
+			} else {
+				$js_path = $uri->root().'modules/mod_news_pro_gk5/tmpl/portal_modes/'.strtolower($this->config['module_mode']).'/script.'.($this->config['engine_mode']).'.js';
 			}
+			
 			// add stylesheets to document header
-			if($this->config["useCSS"] == 1 && $document instanceof JDocumentHtml) {
-				$document->addStyleSheet( $css_path, 'text/css' );
-			}
+			$document->addStyleSheet( $css_path, 'text/css' );
+
 			// add script to the document header
-			if($this->config['useScript'] == 1 && $document instanceof JDocumentHtml) {
-				$document->addScript($js_path);
-			}
+			$document->addScript($js_path);
+
 			// init $headData variable
 			$headData = false;
 			// add scripts with automatic mode to document header
@@ -227,8 +241,8 @@ class NSP_GK5_Helper {
 					$document->addScript($uri->root().'modules/mod_news_pro_gk5/interface/scripts/engine.'.($this->config['engine_mode']).'.js');
 				}
 			}
-			//
-			require(JModuleHelper::getLayoutPath('mod_news_pro_gk5', 'default'));
+
+			require(JModuleHelper::getLayoutPath('mod_news_pro_gk5', $this->config['layout']));
 		}
     }
     // RENDER PORTAL MODE LAYOUT

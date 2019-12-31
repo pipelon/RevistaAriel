@@ -10,9 +10,9 @@
 
 jQuery.noConflict();
 
-jQuery(window).load(function(){
+jQuery(window).on('load', function() {
 	jQuery(document).find('.nspMain').each(function(i, module) {	
-		if(!jQuery(module).hasClass('activated')) {	
+		if(!jQuery(module).hasClass('activated')) {
 			new NSP5(module);
 		}
 	});
@@ -252,6 +252,7 @@ NSP5.prototype = {
 				}
 			});
 		}
+		this.afterInit();
 	},
 	//
 	nsp_art_list: function(i, pos){
@@ -277,6 +278,7 @@ NSP5.prototype = {
 			} else {
 				this.arts_current = dir;
 			}
+            $this.beforeAnim();
 			//		
 			jQuery($this.module.find('.nspArtScroll2')).animate({
 				'margin-left': (-1 * this.arts_current * this.arts_block_width) + "%"
@@ -288,6 +290,7 @@ NSP5.prototype = {
 			
 			setTimeout(function() {
 				$this.anim_arts = false;
+				$this.afterAnim();
 			}, this.config['animation_speed']);
 			
 			this.nsp_art_list(this.arts_current, 'top');
@@ -318,6 +321,8 @@ NSP5.prototype = {
 				$this.links_current = dir;
 			}
 			
+			$this.beforeAnim();
+			
 			setTimeout(function() {
 				for(var x = 0; x < $this.config['links_columns_amount']; x++) {
 					var item = $this.links_pages[$this.links_current * $this.config['links_columns_amount'] + x]; 
@@ -329,6 +334,7 @@ NSP5.prototype = {
 			//
 			setTimeout(function() {
 				$this.anim_lists = false;
+				$this.afterAnim();
 			}, this.config['animation_speed']);
 			//
 			jQuery($this.module.find('.nspLinkScroll2')).animate({
@@ -349,5 +355,16 @@ NSP5.prototype = {
 		setTimeout(function() {
 			$this.nsp_gk5_autoanim();
 		}, $this.config['animation_interval']);
+	},
+	beforeAnim: function() {
+	    // support callback after animation
+	    
+	},
+	afterAnim: function() {
+	    // support callback after animation
+	    
+	},
+	afterInit: function() {
+	    // support callback after init interface
 	}
 };
