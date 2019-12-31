@@ -1,0 +1,832 @@
+/*--------------------------------------------------------------
+
+
+
+# Finance.com - September 2009 (for Joomla 1.5)
+
+
+
+# Copyright (C) 2007-2009 Gavick.com. All Rights Reserved.
+
+
+
+# License: Copyrighted Commercial Software
+
+
+
+# Website: http://www.gavick.com
+
+
+
+# Support: support@gavick.com  
+
+
+
+---------------------------------------------------------------*/
+
+
+
+	
+
+
+
+/* universal set of reset styles
+
+
+
+---------------------------------------------------------------*/
+
+
+
+html, body, div, span, applet, object, iframe, caption, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, dl, dt, dd, ol, ul, li, fieldset, form, label, legend {
+	vertical-align: baseline;
+	font-size: 100%;
+	outline: 0;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+/* remember to define focus styles! */
+
+
+
+:focus {
+	outline: 0;
+}
+body {
+	background: white;
+	line-height: 1;
+	color: black;
+}
+ol, ul {
+	list-style: none;
+}
+/* tables still need cellspacing="0" in the markup */
+
+
+
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, th, td {
+	font-weight: normal;
+}
+/* remove possible quote marks (") from <q> & <blockquote> */
+
+
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+/* ||| the end |||*/
+
+
+
+/* ||| set of clearing floats |||*/	
+
+
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.clearfix {
+	display: inline-block;
+}
+.clr {
+	font-size : 1px;
+}
+/* Hides from IE-mac \*/
+
+
+
+* html .clearfix {
+	height: 1%;
+}
+.clearfix {
+	display: block;
+}
+.clear {
+	clear: both;
+}
+/* End hide from IE-mac */
+
+
+
+/* ------------------------ the end ----------------------------*/
+
+
+
+html {
+	min-height:100%;
+	border-bottom:1px solid transparent;
+}
+body {
+	margin:0;
+	padding:0;
+	font-size:12px;
+	font-family:Arial, Verdana, sans-serif;
+	line-height: 18px;
+}
+/* Basic link styles 
+
+
+
+---------------------------------------------------------------*/
+
+
+
+a {
+	outline:none;
+	cursor:pointer;
+}
+a:link,  a:visited,  a:active {
+	text-decoration:none;
+}
+a:hover {
+	text-decoration:none;
+}
+/* Basic image style 
+
+
+
+----------------------------------------------------------------*/
+
+
+
+img {
+	border:none;
+	text-decoration:none;
+}
+/* Basic lists styles 
+
+
+
+----------------------------------------------------------------*/
+
+
+
+ul {
+	padding:0;
+	margin:0;
+}
+ul li {
+	padding:0;
+	line-height:24px;
+	margin:0;
+}
+ul ul {
+	padding-left:20px;
+}
+ul li a {
+	text-decoration:none;
+}
+ol li {
+	line-height:24px;
+}
+/* Basic heading styles 
+
+
+
+-----------------------------------------------------------------*/
+
+
+
+th {
+	padding:4px;
+	text-align:left;
+}
+p, pre, blockquote, h1, h2, h3, h4, h5, h6 {
+	margin:1em 0;
+	padding:0;
+}
+h1 {
+	font-size:200%;
+}
+h2 {
+	font-size:175%;
+}
+h3 {
+	font-size:150%;
+}
+h4 {
+	font-size:125%;
+}
+h5 {
+	font-size:115%;
+}
+h1, h2, h3, h4, h5 {
+	margin:0;
+}
+/* Basic form styles 
+
+
+
+-----------------------------------------------------------------*/
+
+
+
+fieldset {
+	border:none;
+	padding:5px 0;
+}
+fieldset a {
+	font-weight:bold;
+}
+input, select, button {
+	font-size:11px;
+	font-weight:normal;
+}
+/* Basic HR-line style 
+
+
+
+-----------------------------------------------------------------*/
+
+
+
+hr {
+	border-right:0;
+	border-left:0;
+	border-bottom:0;
+	height:1px;
+}
+/* Basic positioning classes 
+
+
+
+-----------------------------------------------------------------*/
+
+
+
+.clearfix {
+	clear:both;
+}
+/* Logo 
+
+
+
+------------------------------------------------------------*/
+
+
+
+a#logo,  a#logo_styled {
+	margin:0;
+	float:left;
+	display:block;
+	font-size:35px;
+	line-height:35px;
+	font-family:Georgia, serif;
+}
+a#logo_styled {
+	/* 
+
+
+
+		Here you can change width or height of your logo 
+
+
+
+		if you've disabled option "logo as image"
+
+
+
+	*/
+
+
+
+	width:300px;
+	height:35px;
+}
+/* Page structure
+
+
+
+------------------------------------------------------------*/
+
+
+
+/* top */
+
+
+
+div.wrapper_centered {
+	width:980px;
+	margin:0 auto;
+}
+div#top {
+	overflow:hidden;
+	margin-bottom:12px;
+}
+div#highlights {
+	overflow:hidden;
+	height:27px;
+}
+div#highlight {
+	width:auto;
+	float:left;
+}
+div#rss,  div#tools {
+	min-height:27px;
+	width:auto;
+	float:right;
+	margin:0 0 0 6px;
+}
+div#rss a,  div#tools img {
+	min-height:27px;
+	position:relative;
+	cursor:pointer;
+}
+div#top_content {
+	overflow:hidden;
+}
+div#date {
+	padding:0 5px;
+	font-family:Georgia, serif;
+	font-size:18px;
+	line-height:26px;
+	width:auto;
+	float:right;
+	margin-top:20px;
+}
+div#userarea {
+	width:auto;
+	float:right;
+	min-height:26px;
+	line-height:26px;
+	margin:20px 0 0 20px;
+}
+span#login {
+	padding-right:5px;
+	margin-right:2px;
+}
+p.information_td {
+	text-align: right;
+	margin-right: 66px;
+}
+#popup_register button.button {
+	float: right;
+	margin: 0 66px 20px 0;
+}
+span#login_noborder {
+	border:none;
+}
+div#search {
+	width:auto;
+	float:right;
+	min-height:26px;
+	margin:18px 0 0 32px;
+}
+/*menu*/
+
+
+
+div#menu_wrapper {
+	min-height:41px;
+}
+div#menu {
+	height:34px;
+	position:absolute;
+	width:980px;
+}
+div#horiz-menu li.level1 {
+	cursor:pointer;
+}
+div#horiz-menu li.level1 a,  div#horiz-menu li.level1 span.separator {
+	font-weight:bold;
+	padding:0 5px;
+	text-align:center;
+	display:inline-block;
+	width:129px;
+}
+div#horiz-menu li.level1 span.separator {
+	height:34px;
+	line-height:34px;
+	display:block;
+}
+div#horiz-menu li.level1 li span.separator {
+	display:inline;
+}
+div#horiz-menu li.level1 span.separator:hover {
+	cursor:default;
+}
+/* popups */
+
+
+
+div#popups_container {
+	width:980px;
+	margin:0 auto;
+}
+div#popup_login,  div#popup_register,  div#popup_tools {
+	display:none;
+	top:0;
+	overflow:hidden;
+}
+div#colorpickers1,  div#colorpickers2 {
+	width:300px;
+	padding:10px;
+	float:left;
+}
+div#colorpickers1 label,  div#colorpickers2 label {
+	display:block;
+	clear:both;
+	float:right;
+	margin-top:5px;
+}
+div#colorpickers1 label input,  div#colorpickers2 label input {
+	width:120px;
+	height: 11px;
+	margin-left:20px;
+	font-size: 10px;
+	line-height: 10px;
+	border:none!important;
+	text-align: right;
+	background: #000;
+	padding: 8px;
+}
+#apply_style_wrap {
+	float:left;
+	clear:both;
+	text-align:right;
+	width:590px;
+}
+#apply_style {
+	clear:both;
+	float:right;
+	margin:10px 0 15px 0;
+}
+div#predefined {
+	margin: 12px 20px 0 40px;
+	float:right;
+	width:250px;
+}
+div#predefined ul {
+	margin:12px 0 0 0;
+	list-style-type:square;
+	list-style-position:inside;
+}
+div#predefined ul li {
+	line-height:18px;
+}
+/* banner1 */
+
+
+
+div#banner1 {
+	min-width:300px;
+	max-width:980px;
+	width:auto;
+	margin:0 auto 12px auto;
+}
+/* footer */
+
+
+
+div#footer {
+	width:980px;
+	margin:0 auto;
+}
+div#footer_menu {
+	float:left;
+	width:auto;
+	margin-top:3px;
+}
+div#footer_menu ul li {
+	width:auto;
+	float:left;
+	margin-right:10px;
+}
+div#stylearea,  div#informations {
+	float:right;
+	width:auto;
+	line-height:30px;
+	height:30px;
+}
+div#stylearea {
+	margin-left: 10px;
+}
+/* content */
+
+
+
+div#content_column {
+	float:left;
+	margin-bottom:12px;
+}
+div#left {
+	float:left;
+	margin-bottom:12px;
+}
+div#right {
+	float:right;
+	margin-bottom:12px;
+}
+div#header,  div#banner2 {
+	float:left;
+	margin-bottom:12px;
+	overflow:hidden;
+}
+div#mainbody {
+	padding:12px;
+}
+div#mainbody_content {
+	float:left;
+}
+div#inset {
+	float:left;
+}
+div#breadcrumb {
+	margin-bottom:12px;
+}
+/* column & inset */
+
+
+
+div.column .moduletable,  div.column .moduletable_menu,  div.column .moduletable_clear,  div.column .moduletable_text,  div.column .moduletable_lite,  div.column .moduletable_dark,  div.column .moduletable_color1,  div.column .moduletable_color2,  div#inset .moduletable,  div#inset .moduletable_menu,  div#inset .moduletable_clear,  div#inset .moduletable_text,  div#inset .moduletable_lite,  div#inset .moduletable_dark,  div#inset .moduletable_color1,  div#inset .moduletable_color2 {
+	margin-top:10px;
+}
+div.column .moduletable:first-child,  div.column .moduletable_menu:first-child,  div.column .moduletable_text:first-child,  div.column .moduletable_lite:first-child,  div.column .moduletable_dark:first-child,  div.column .moduletable_color1:first-child,  div.column .moduletable_color2:first-child,  div#inset .moduletable:first-child,  div#inset .moduletable_menu:first-child,  div#inset .moduletable_text:first-child,  div#inset .moduletable_lite:first-child,  div#inset .moduletable_dark:first-child,  div#inset .moduletable_color1:first-child,  div#inset .moduletable_color2:first-child {
+	margin-top:0!important;
+}
+/* bottom */
+
+
+
+div#bottom {
+	margin-bottom:12px;
+}
+/* blocks */
+
+
+
+.us_width-20,  .us_width-25,  .us_width-33,  .us_width-50,  .us_width-100 {
+	float:left;
+}
+.us_width-20:first-child,  .us_width-25:first-child,  .us_width-33:first-child,  .us_width-50:first-child {
+	border-left:none;
+}
+.us_width {
+	margin-left:-1px!important;
+}
+.us_width:first-child {
+	margin-left:0!important;
+}
+.us_width-20 {
+	width:20%;
+}
+.us_width-25 {
+	width:25%;
+}
+.us_width-33 {
+	width:33.3%;
+}
+.us_width-50 {
+	width:50%;
+}
+.us_width-100 {
+	width:100%;
+}
+.module_wrap,  .users_wrap {
+	overflow:hidden;
+}
+.module_wrap:first-child,  .users_wrap:first-child,  div#mainbody:first-child {
+	border-top:none;
+}
+.module_wrap:first-child,  .users_wrap:first-child {
+	margin-top:0px;
+}
+/*  Restrictions & suffixes
+
+
+
+------------------------------------------------------------*/
+
+
+
+/* 
+
+
+
+	Available suffixes :
+
+
+
+	content: _dark, _lite, _color1, _color2, _clear, _menu, _text, nohead
+
+
+
+	column: _dark, _lite, _color1, _color2, _clear, _menu, _text, nohead
+
+
+
+	bottom: _clear, _menu, _text, nohead
+
+
+
+*/
+
+
+
+.moduletable h3,  .moduletable_menu h3,  .moduletable_text h3,  .moduletable_lite h3,  .moduletable_dark h3,  .moduletable_color1 h3,  .moduletable_color2 h3 {
+	padding:15px;
+	margin:0!important;
+	font-size:16px;
+	font-weight:bold;
+}
+.moduletable .moduletable_content,  .moduletable_menu .moduletable_content,  .moduletable_text .moduletable_content,  .moduletable_lite .moduletable_content,  .moduletable_dark .moduletable_content,  .moduletable_color1 .moduletable_content,  .moduletable_color2 .moduletable_content {
+	padding:0 15px 15px 15px;
+}
+.nohead .moduletable_content {
+	padding-top:48px;
+}
+.moduletable .button,  .moduletable_lite .button,  .moduletable_dark .button,  .moduletable_color1 .button,  .moduletable_color2 .button,  .moduletable .readon,  .moduletable_lite .readon,  .moduletable_dark .readon,  .moduletable_color1 .readon,  .moduletable_color2 .readon,  a.readon,  .button {
+	cursor:pointer;
+	font-weight:normal!important;
+}
+/* _clear */
+
+
+
+.moduletable_clear,  .moduletable_clear .moduletable_content {
+	margin:0;
+	padding:0;
+	background:transparent;
+	border:none;
+}
+/* Standard Joomla modules
+
+
+
+------------------------------------------------------------*/
+
+
+
+/* latest & popular */
+
+
+
+.moduletable ul,  .moduletable_color1 ul,  .moduletable_lite ul,  .moduletable_color2 ul,  .moduletable_dark ul {
+	list-style-type:none;
+}
+.moduletable ul li,  .moduletable_color1 ul li,  .moduletable_lite ul li,  .moduletable_color2 ul li {
+	line-height:28px;
+}
+.moduletable_dark ul li {
+	line-height:28px;
+}
+/* menus */
+
+
+
+.moduletable_menu ul {
+	list-style-type: none;
+}
+.moduletable_menu ul ul {
+	list-style-type:square;
+	list-style-position:inside;
+	padding-left:0;
+	margin-left:-7px;
+}
+.moduletable_menu ul li {
+	padding:0 0 0 7px;
+}
+.moduletable_menu ul ul li {
+	border-bottom:none;
+	padding:0 0 0 9px;
+}
+/* mod_breadcrumbs */
+
+
+
+span.breadcrumbs {
+	display:block;
+	height:auto;
+	/*line-height:32px;*/
+
+
+
+	padding:0 10px;
+}
+span.breadcrumbs .youah {
+	margin-right:10px;
+}
+span.breadcrumbs span.separator {
+	margin:0 9px;
+}
+/* mod_search */
+
+
+
+.moduletable_content .search {
+	height:40px;
+	width:100%;
+	padding-top:20px
+}
+input#mod_search_searchword {
+	height:25px;
+	width:150px;
+	display:inline-block;
+	padding-top:3px;
+	font-size:16px;
+	float:left
+}
+div.search .button {
+	/*text-transform:uppercase;*/
+
+
+
+         width:70px!important;
+	height:30px!important;
+	display:inline-block;
+	line-height:30px!important;
+	margin:0 0 0 3px;
+	padding:0 7px 4px 7px;
+	font-size:11px;
+	font-weight:bold;
+	cursor:pointer;
+	float:left
+}
+/* mod_login */
+
+
+
+form#form-login {
+	padding:20px;
+}
+#modlgn_username,  #modlgn_passwd {
+	border:none;
+}
+ul.loginposition li {
+	width:auto;
+	float:left;
+	margin-right:10px;
+}
+#modlgn_remember {
+	position:relative;
+	top:4px;
+}
+#form-login-fpass,  #form-login-flogin,  #form-login-register {
+	margin-top:4px;
+}
+/* popups */
+
+
+
+#popup_register #josForm {
+	padding:20px 20px 40px 20px;
+}
+#popup_register #josForm .inputbox {
+	border:none;
+}
+/* Highlighter */
+
+
+
+.gk_news_highlighter_interface .text {
+	padding-left:0!important;
+}
+.gk_news_highlighter_item {
+	padding-left:5px!important;
+	font-size:11px;
+}
+/* advert */
+
+
+
+div.banneritem,  div.banneritem_text,  div.banneritem_lite,  div.banneritem_dark,  div.banneritem_color1,  div.banneritem_color2 {
+	padding:5px 0!important;
+}
+/* Joomla classes */
+
+
+
+#system-message,  #system-message dd,  #system-message ul {
+	margin:0!important;
+	padding:0!important;
+	background:none!important;
+}
+#system-message ul li {
+	text-align:center;
+}
+div.blog_more ul {
+	list-style-type:square!important;
+	margin-left:12px;
+	padding-left:3px;
+}
+div.blog_more li {
+	padding-left:0;
+	line-height:120%;
+}
+.description {
+	font-style:oblique;
+	font-size:11px;
+}
+.moduletable_edicion{ background-color:#f0e6dd;}

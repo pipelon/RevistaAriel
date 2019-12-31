@@ -1,0 +1,74 @@
+/*--------------------------------------------------------------
+# Finance.com - September 2009 (for Joomla 1.5)
+# Copyright (C) 2007-2009 Gavick.com. All Rights Reserved.
+# License: Copyrighted Commercial Software
+# Website: http://www.gavick.com
+# Support: support@gavick.com  
+---------------------------------------------------------------*/
+	
+/* Rules to fixing problems in IE7 */
+.us_width-20{ width:19.9%!important; }
+.us_width-25{ width:24.9%!important; }
+.us_width-33{ width:32.9%!important; }
+.us_width-33:first-child{ width:33.9%!important; }
+.us_width-50{ width:49.9%!important; }
+.us_width-100{ width:100%!important; }
+
+div#menu{
+	z-index:100000;
+}
+div#bottom{
+	margin-top:12px;
+}
+.gk_npro_short_next,
+.gk_npro_short_prev{
+	position:relative;
+	top:-14px;
+}
+.gk_npro_short_ulwrap li h4 a{
+	margin: 0 0 3px -16px!important;
+}
+.search .button{
+	float:none!important;
+} 
+#mod_search_searchword{
+	float:left!important;
+	margin-right:10px!important;
+}
+.gkw_next_days li{
+	width:24%!important;
+	margin-left:-1px!important;
+	padding-left:1px!important;
+	margin-right:1px!important;
+}
+span.gkw_day{
+	width:90%!important;
+}
+p.gkw_day_temp{
+	width:90%!important;
+}
+.gk_npro_short_ulwrap h4 a{
+	padding-left:16px!important;
+}
+#colorpickers1 label,
+#colorpickers2 label{
+	display:block;
+	width:265px;
+}
+#colorpickers1 label input,
+#colorpickers2 label input{
+	display:block;
+	float:left;
+	height:27px;
+	line-height:27px;
+	width:100px!important;
+}
+#colorpickers1 label span,
+#colorpickers2 label span{
+	display:block;
+	width:120px;
+	text-align:right;
+	float:left;
+	height:27px;
+	line-height:27px;	
+}

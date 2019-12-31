@@ -1,0 +1,515 @@
+/*--------------------------------------------------------------
+
+# Finance.com - September 2009 (for Joomla 1.5)
+
+# Copyright (C) 2007-2009 Gavick.com. All Rights Reserved.
+
+# License: Copyrighted Commercial Software
+
+# Website: http://www.gavick.com
+
+# Support: support@gavick.com  
+
+---------------------------------------------------------------*/
+
+
+
+/* Joomla style
+
+--------------------------------------------------------- */
+
+/* headings */
+
+h1.componentheading,
+
+.componentheading{
+
+	line-height:39px;
+
+	margin-top:10px;
+
+	font-size:2.2em;
+
+}
+
+.componentheading{
+
+	text-align: left;
+
+}
+
+.contentdescription{
+
+	padding:6px 6px 16px 6px;
+
+}
+
+h2.contentheading,
+
+.contentheading,
+
+table.blog .contentheading{
+
+	height:36px;
+
+	line-height:32px;
+
+	padding:0!important;
+
+	font-size:28px;
+
+	font-family:Georgia, serif;
+
+}
+
+.contentdescription{
+
+	padding:6px 0!important;
+
+}
+
+.contentdescription img{
+
+	padding:0 7px 8px 0;
+
+}
+
+/* article structure */
+
+.contentpaneopen tr td{
+
+	padding-bottom:6px!important;
+
+}
+
+.contentpaneopen tr:first-child td{
+
+	padding-bottom:0!important;
+
+}
+
+.article_separator{
+
+	clear:both;
+
+	display:block;
+
+	height:10px;
+
+}
+
+.column_separator{
+
+	padding: 0 0 0 25px;
+
+}
+
+td.buttonheading {
+
+	width:14px;
+
+	margin-left:6px;
+
+	text-align:right;
+
+	padding:2px 0 0 2px!important;
+
+}
+
+.buttonheading img {
+
+	margin:0 8px 0 0;
+
+	border:0;
+
+	float:right;
+
+	height:12px;
+
+}
+
+.createdate{
+
+	font-style:italic;
+
+}
+
+.createby {
+
+	padding:3px 3px 3px 20px;
+
+}
+
+.written_by {
+
+	padding:0;
+
+}
+
+.modifydate {
+
+	text-align:right;
+
+	font-style:italic;
+
+	padding:0 6px 0 0;
+
+	line-height:12px;
+
+	font-size: 10px;
+
+}
+
+/* blog more */
+
+div.blog_more ul{
+
+	list-style-type:disc;
+
+	margin-left:12px;
+
+	padding-left:3px;
+
+}
+
+div.blog_more li{
+
+	padding-left:0;
+
+	line-height:120%;
+
+}
+
+/* readon */
+
+a.readon,
+
+.back_button a,
+
+.button,
+
+.button_dark,
+
+.button_bright,
+
+.validate{
+
+	height:21px!important;
+
+	line-height:21px!important;
+
+	border:none;
+
+	margin:0;
+
+	padding:0 8px;
+
+	font-size:12px;
+
+	font-weight:bold;
+
+}
+
+.button,
+
+.button_dark,
+
+.button_bright,
+
+.validate{
+
+	font-size:12px;
+
+	padding-bottom:4px;
+
+	font-weight:normal;
+
+	font-family:Verdana;
+
+}
+
+a.readon,
+
+.back_button a{
+
+	display:block;
+
+	float:left;
+
+}
+
+a.readon:hover,
+
+a.readon:active,
+
+a.readon:focus,
+
+.back_button a:hover {
+
+	text-decoration:none;
+
+}
+
+/* Pagination */
+
+ul.pagination{
+
+	/*margin:15px auto 0;*/
+
+	padding:10px 0;
+
+	text-align:center;
+
+}
+
+ul.pagination li{
+
+	margin:0;
+
+	padding:0;
+
+	display:inline;
+
+	background:none;
+
+}
+
+ul.pagination a,
+
+ul.pagination li span{
+
+	padding:2px 5px;
+
+	font-size:10px;
+
+	text-transform:uppercase;
+
+}
+
+/* Module Advertisement */
+
+div.banneritem,
+
+div.banneritem_text,
+
+div.banneritem_lite,
+
+div.banneritem_dark,
+
+div.banneritem_color1,
+
+div.banneritem_color2{
+
+	padding:5px 0!important;
+
+	border-bottom:1px dotted;
+
+}
+
+.bannerheader,
+
+.bannerheader_text,
+
+.bannerheader_lite,
+
+.bannerheader_dark,
+
+.bannerheader_color1,
+
+.bannerheader_color2,
+
+.bannerfooter,
+
+.bannerfooter_text,
+
+.bannerfooter_lite,
+
+.bannerfooter_dark,
+
+.bannerfooter_color1,
+
+.bannerfooter_color2{
+
+	padding:3px;
+
+	font-style:italic;
+
+	font-size: 0.9em;
+
+}
+
+.bannerfooter,
+
+.bannerfooter_text,
+
+.bannerfooter_lite,
+
+.bannerfooter_dark,
+
+.bannerfooter_color1,
+
+.bannerfooter_color2{
+
+	text-align:right;
+
+}
+
+/* inputbox */
+
+input.inputbox{
+
+	padding:1px 4px 0 4px;
+
+	height:20px;
+
+	font-size:14px;
+
+}
+
+/* IMG caption */
+
+img.caption{
+
+	margin:0;
+
+	width:auto!important;
+
+	padding:0;
+
+	display:block;
+
+}
+
+div.img_caption p{
+
+	margin:0;
+
+	font-size:10px;
+
+	color: #999;
+
+	font-style:italic;
+
+}
+
+div.img_caption.left,
+
+div.img_caption.right{
+
+	margin:5px 26px 5px 0;
+
+	padding:5px 5px 2px 5px;
+
+	border:1px solid #e7e7e7;
+
+}
+
+div.img_caption.right{
+
+	margin-left:26px;
+
+	margin-right:0;
+
+}
+
+/* tables */
+
+td.sectiontableheader{
+
+	text-align:left;
+
+	padding:8px 5px;
+
+}
+
+tr.sectiontableentry0 td,
+
+tr.sectiontableentry1 td,
+
+tr.sectiontableentry2 td{
+
+	padding:4px 5px;
+
+	text-align:left;
+
+}
+
+td.sectiontableentry0,
+
+td.sectiontableentry1,
+
+td.sectiontableentry2{
+
+	padding: 3px;
+
+}
+
+#limit{
+
+	margin-bottom:10px;
+
+}
+
+/* polls */
+
+table.poll{
+
+	padding: 0;
+
+	width: 100%;
+
+	border-collapse:collapse;
+
+}
+
+table.pollstableborder{
+
+	padding: 0;
+
+	width: 100%;
+
+	border: none;
+
+	text-align:left;
+
+}
+
+table.pollstableborder img{
+
+	vertical-align: baseline;
+
+}
+
+table.pollstableborder td{
+
+	line-height:20px;
+
+	padding: 4px!important;
+
+	border-collapse:collapse;
+
+	border-spacing:0;
+
+}
+
+.pollstableborder tr.sectiontableentry1 td,
+
+.pollstableborder tr.sectiontableentry2 td{
+
+	background:none;
+
+}
+
+.pollstableborder tr td.sectiontableentry1:first-child,
+
+.pollstableborder tr td.sectiontableentry2:first-child{
+
+	text-align:center;
+
+}
+
+.poll thead td{
+
+	text-align:left;
+
+}
